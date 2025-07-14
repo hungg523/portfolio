@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Trương Hoàng Hưng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+        
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active::after {
+            width: 100%;
+        }
+        
+        #menu-toggle:checked ~ #mobile-menu {
+            display: block;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: #e5e7eb;
+        }
+        
+        .timeline-item:last-child::before {
+            height: 50%;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -26px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-xl">TH</div>
+                    <span class="ml-3 text-xl font-semibold">Trương Hoàng Hưng</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link active text-blue-600">Trang chủ</a>
+                    <a href="#about" class="nav-link hover:text-blue-600">Giới thiệu</a>
+                    <a href="#skills" class="nav-link hover:text-blue-600">Kỹ năng</a>
+                    <a href="#experience" class="nav-link hover:text-blue-600">Kinh nghiệm</a>
+                    <a href="#projects" class="nav-link hover:text-blue-600">Dự án</a>
+                    <a href="#contact" class="nav-link hover:text-blue-600">Liên hệ</a>
+                </nav>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-500 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <div class="flex flex-col space-y-3">
+                <a href="#home" class="nav-link active text-blue-600 py-2">Trang chủ</a>
+                <a href="#about" class="nav-link hover:text-blue-600 py-2">Giới thiệu</a>
+                <a href="#skills" class="nav-link hover:text-blue-600 py-2">Kỹ năng</a>
+                <a href="#experience" class="nav-link hover:text-blue-600 py-2">Kinh nghiệm</a>
+                <a href="#projects" class="nav-link hover:text-blue-600 py-2">Dự án</a>
+                <a href="#contact" class="nav-link hover:text-blue-600 py-2">Liên hệ</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6 gradient-bg text-white">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Xin chào, tôi là <span class="text-yellow-300">Hoàng Hưng</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6">Backend Developer | Product-Oriented</h2>
+                <p class="text-lg mb-8 max-w-lg">Với 1 năm kinh nghiệm phát triển backend và gần 1 năm làm team leader, tôi chuyên sâu về .NET Core, Clean Architecture, và Microservices. Đam mê xây dựng các hệ thống backend mạnh mẽ, scalable và tối ưu hiệu suất.</p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300">Liên hệ ngay</a>
+                    <a href="#" class="border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition duration-300">Tải CV</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-white overflow-hidden shadow-xl mt-8">
+                    <img src="./images/avatar.png" alt="Trương Hoàng Hưng" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Giới thiệu</h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-600">Thông tin cá nhân</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-user mt-1 mr-3 text-blue-500"></i>
+                                <span>Trương Hoàng Hưng</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-birthday-cake mt-1 mr-3 text-blue-500"></i>
+                                <span>01/04/2003</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-envelope mt-1 mr-3 text-blue-500"></i>
+                                <span>hoanghung52304@gmail.com</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-phone mt-1 mr-3 text-blue-500"></i>
+                                <span>0965106829</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1 mr-3 text-blue-500"></i>
+                                <span>60 Vang Nhứt, Phước Hảo, Châu Thành, Trà Vinh</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-semibold mb-4">Về tôi</h3>
+                    <p class="text-gray-600 mb-6">Tôi là Backend Developer với background chuyên sâu về .NET Core và kiến trúc phần mềm. Với GPA 3.4/4.0 tại Đại học Trà Vinh, tôi đã tích lũy 1 năm kinh nghiệm phát triển backend thực tế và gần 1 năm làm team leader. Đặc biệt quan tâm đến Clean Architecture, Microservices và các giải pháp backend scalable.</p>
+                    
+                    <h3 class="text-2xl font-semibold mb-4">Học vấn</h3>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm mb-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg">Đại học Trà Vinh</h4>
+                                <p class="text-gray-600">Sinh viên ngành Công nghệ thông tin</p>
+                                <p class="text-gray-500 text-sm">GPA: 3.4/4.0</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-semibold mb-4">Hoạt động ngoại khóa</h3>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                        <div class="flex flex-col space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-users text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Leader CLB Tin học Đại học Trà Vinh</h4>
+                                    <p class="text-gray-600">Dẫn dắt và t tổ chức các hoạt động học tập, chia sẻ kiến thức cho thành viên câu lạc bộ.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-chalkboard-teacher text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Workshop chia sẻ công nghệ</h4>
+                                    <p class="text-gray-600">Tham gia chia sẻ kiến thức và kinh nghiệm về lập trình cho sinh viên.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Kỹ năng chuyên môn</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Backend Skills -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-server text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Backend Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fab fa-microsoft mr-2"></i>.NET Core
+                        </span>
+                        <span class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fab fa-php mr-2"></i>PHP Laravel
+                        </span>
+                        <span class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fab fa-node-js mr-2"></i>Node.js
+                        </span>
+                        <span class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-server mr-2"></i>Express.js
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Frontend Skills -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-laptop-code text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Frontend Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-sky-50 text-sky-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fab fa-angular mr-2"></i>Angular
+                        </span>
+                        <span class="bg-sky-50 text-sky-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-arrow-right mr-2"></i>Next.js
+                        </span>
+                        <span class="bg-sky-50 text-sky-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fab fa-react mr-2"></i>React.js
+                        </span>
+                        <span class="bg-sky-50 text-sky-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-code mr-2"></i>TypeScript
+                        </span>
+                        <span class="bg-sky-50 text-sky-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fab fa-html5 mr-2"></i>HTML/CSS/JS
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Database Skills -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-database text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Database & Storage</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-cyan-50 text-cyan-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-database mr-2"></i>SQL Server
+                        </span>
+                        <span class="bg-cyan-50 text-cyan-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-database mr-2"></i>MySQL
+                        </span>
+                        <span class="bg-cyan-50 text-cyan-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-leaf mr-2"></i>MongoDB
+                        </span>
+                        <span class="bg-cyan-50 text-cyan-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-memory mr-2"></i>Redis
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Architecture & Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-cogs text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Architecture & Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-layer-group mr-2"></i>Clean Architecture
+                        </span>
+                        <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-cubes mr-2"></i>Microservices
+                        </span>
+                        <span class="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-exchange-alt mr-2"></i>RabbitMQ
+                        </span>
+                        <span class="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fab fa-docker mr-2"></i>Docker
+                        </span>
+                        <span class="bg-slate-50 text-slate-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fab fa-git-alt mr-2"></i>Git/GitHub
+                        </span>
+                        <span class="bg-slate-50 text-slate-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-plug mr-2"></i>RESTful API
+                        </span>
+                        <span class="bg-gray-50 text-gray-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-key mr-2"></i>JWT
+                        </span>
+                        <span class="bg-gray-50 text-gray-700 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <i class="fas fa-sitemap mr-2"></i>MVC
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Kinh nghiệm làm việc</h2>
+            
+            <div class="relative">
+                <!-- Timeline -->
+                <div class="space-y-8">
+                    <!-- Experience 1 -->
+                    <div class="relative timeline-item pl-8">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <h3 class="text-xl font-semibold">Product Manager</h3>
+                                <span class="text-blue-600 font-medium">Công ty Cổ phần Hệ Sinh Thái 365</span>
+                            </div>
+                            <div class="flex items-center text-gray-500 mb-4">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>4 tháng</span>
+                            </div>
+                            <p class="text-gray-600">Quản lý sản phẩm, phân tích yêu cầu khách hàng và phối hợp với team phát triển để xây dựng hệ thống CRM. Chịu trách nhiệm định hướng sản phẩm và đảm bảo chất lượng deliverable.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 2 -->
+                    <div class="relative timeline-item pl-8">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <h3 class="text-xl font-semibold">Team Leader (2 người)</h3>
+                                <span class="text-blue-600 font-medium">Công ty Cổ phần Hệ Sinh Thái 365</span>
+                            </div>
+                            <div class="flex items-center text-gray-500 mb-4">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>Gần 1 năm</span>
+                            </div>
+                            <p class="text-gray-600">Dẫn dắt nhóm 2 người phát triển các dự án backend, phân công công việc, code review và đảm bảo tiến độ dự án. Mentor team member về clean code và best practices.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 3 -->
+                    <div class="relative timeline-item pl-8">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <h3 class="text-xl font-semibold">Backend Developer</h3>
+                                <span class="text-blue-600 font-medium">Dự án thực tế</span>
+                            </div>
+                            <div class="flex items-center text-gray-500 mb-4">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>1 năm</span>
+                            </div>
+                            <p class="text-gray-600">Phát triển các hệ thống backend với .NET Core và Laravel, thiết kế và xây dựng RESTful API, tích hợp các dịch vụ bên thứ ba và tối ưu hiệu suất hệ thống.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Dự án nổi bật</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Website bán sản phẩm Apple" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Website bán sản phẩm Apple tích hợp AI</h3>
+                        <p class="text-gray-600 mb-4">Đồ án tốt nghiệp với các tính năng mô tả sản phẩm bằng AI, chatbot h hỗ trợ và hệ thống lọc cộng tác.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">.NET Core</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Angular</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">AI</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">SQL Server</span>
+                        </div>
+                        <a href="https://github.com/hungg523/tn-da21tta-110121027-truonghoanghung-ungdungaivaoxaydungweb" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                            <span>Xem chi tiết</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Backend hệ thống bán sản phẩm Apple" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Backend hệ thống bán sản phẩm Apple</h3>
+                        <p class="text-gray-600 mb-4">Sử dụng Clean Architecture + Microservices với .NET Core, RabbitMQ và Minimal API.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">.NET Core</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Microservices</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">RabbitMQ</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Clean Architecture</span>
+                        </div>
+                        <a href="https://github.com/hungg523/cn-da21tta-truonghoanghung-appleshop-dotnet-core-microservice  " class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                            <span>Xem chi tiết</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Hệ thống quản lý đơn hàng" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Hệ thống quản lý đơn hàng</h3>
+                        <p class="text-gray-600 mb-4">Xây dựng hệ thống quản lý đơn hàng với Node.js, Express.js, React và MongoDB.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Node.js</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Express.js</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">React</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">MongoDB</span>
+                        </div>
+                        <a href="https://github.com/hungg523/order-management" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                            <span>Xem chi tiết</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80" alt="Website bất động sản" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Website bất động sản</h3>
+                        <p class="text-gray-600 mb-4">Website bất động sản cho công ty Ngọc Vân Phương với đầy đủ tính năng quản lý và hiển thị bất động sản.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">PHP Laravel</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">MySQL</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Bootstrap</span>
+                        </div>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                            <span>Xem chi tiết</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden project-card transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Backend hệ thống CRM" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Backend hệ thống CRM</h3>
+                        <p class="text-gray-600 mb-4">Hệ thống CRM cho Công ty Hệ sinh thái 365 với các tính năng quản lý khách hàng và công việc.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">.NET Core</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">SQL Server</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">JWT</span>
+                        </div>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                            <span>Xem chi tiết</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Liên hệ</h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm h-full">
+                        <h3 class="text-xl font-semibold mb-6">Thông tin liên hệ</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Email</h4>
+                                    <a href="mailto:hoanghung52304@gmail.com" class="text-blue-600 hover:text-blue-800">hoanghung52304@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Điện thoại</h4>
+                                    <a href="tel:0965106829" class="text-blue-600 hover:text-blue-800">0965106829</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Địa chỉ</h4>
+                                    <p class="text-gray-600">60 Vang Nhứt, Phước Hảo, Châu Thành, Trà Vinh</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-xl font-semibold mb-4">Mạng xã hội</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-blue-100 text-blue-600 p-3 rounded-full hover:bg-blue-200 transition duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-blue-100 text-blue-600 p-3 rounded-full hover:bg-blue-200 transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-blue-100 text-blue-600 p-3 rounded-full hover:bg-blue-200 transition duration-300">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm h-full">
+                        <h3 class="text-xl font-semibold mb-6">Gửi tin nhắn</h3>
+                        
+                        <form id="contactForm" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Họ và tên</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Tiêu đề</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Nội dung</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-300">
+                                Gửi tin nhắn
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-xl">TH</div>
+                        <span class="ml-3 text-xl font-semibold">Trương Hoàng Hưng</span>
+                    </div>
+                    <p class="mt-2 text-gray-400">Backend Developer | Product-Oriented</p>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2023 Trương Hoàng Hưng. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active', 'text-blue-600');
+                });
+                this.classList.add('active', 'text-blue-600');
+            });
+        });
+        
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would normally send the form data to a server
+            // For this example, we'll just show an alert
+            alert('Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi sớm nhất có thể.');
+            this.reset();
+        });
+        
+        // Highlight active section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 300) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active', 'text-blue-600');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active', 'text-blue-600');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
